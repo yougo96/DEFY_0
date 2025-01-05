@@ -9,23 +9,23 @@ services:
       - "/app/node_modules"
     container_name: defy-vite
 
-  defy-vite-build:
-    build: ./defy-vite-build
-    ports:
-      - "81:80"
-    # labels: 
-    #     - traefik.enable=true
-    #     - traefik.http.routers.defy-vite-build.rule=Host(`defy.pradierh.fr`)
-    #     - traefik.http.routers.defy-vite-build.entrypoints=websecure
-    #     - traefik.http.routers.defy-vite-build.tls=true
-    #     - traefik.http.routers.defy-vite-build.tls.certresolver=myresolver
-    #     - traefik.http.services.defy-vite-build.loadbalancer.server.port=80
-    volumes:
-      - "./defy-vite-build:/app"
-      - "/app/node_modules"
-    container_name: defy-vite-build
-    networks: 
-      - proxy
+  # defy-vite-build:
+  #   build: ./defy-vite-build
+  #   ports:
+  #     - "81:80"
+  #   # labels: 
+  #   #     - traefik.enable=true
+  #   #     - traefik.http.routers.defy-vite-build.rule=Host(`defy.pradierh.fr`)
+  #   #     - traefik.http.routers.defy-vite-build.entrypoints=websecure
+  #   #     - traefik.http.routers.defy-vite-build.tls=true
+  #   #     - traefik.http.routers.defy-vite-build.tls.certresolver=myresolver
+  #   #     - traefik.http.services.defy-vite-build.loadbalancer.server.port=80
+  #   volumes:
+  #     - "./defy-vite-build:/app"
+  #     - "/app/node_modules"
+  #   container_name: defy-vite-build
+  #   networks: 
+  #     - proxy
 
   defy-back:
     build: ./defy-back
@@ -53,12 +53,13 @@ services:
       - "5432:5432"
     volumes:
       - ./defy-db-data:/var/lib/postgresql/data
-    env_file: ./defy-back/.env
+    env_file: 
+      - ./defy-back/.env
     environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_PORT: ${DB_PORT}
+      POSTGRES_DB: ${DB_DATABASE-app}
+      POSTGRES_USER: ${DB_USER-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD-root}
+      POSTGRES_PORT: ${DB_PORT-5432}
     container_name: defy-db
     networks: 
       - proxy
