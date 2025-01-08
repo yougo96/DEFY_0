@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 :root {
 
+}
+
+body {
+  margin: 0;
 }
 
 .avatar {
@@ -7,4 +13,13 @@
   height: 2em;
   border-radius: 50%;
   background-color: #f0f0f0;
+}
+
+.defy {
+  font-family: "Permanent Marker", serif;
+  text-decoration: none;
+  margin: 0;
+}
+a:has(.defy) {
+  text-decoration: none;
 }

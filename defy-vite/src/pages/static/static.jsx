@@ -6,13 +6,13 @@ import './static.css'
 export default function Static () {
 
     return (
-        <>
-            <main>
-                <header>header</header>
+        <body className='static'>
+            <header><h1>DEFY</h1></header>
+            <main className='container-fluid'>
 
                 <Outlet />
             </main>
             <footer>Footer</footer>
-        </>
+        </body>
     )
 }

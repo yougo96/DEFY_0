@@ -11,16 +11,14 @@ import './app.css'
 
 export default function App() {
   return (
-    <>
+    <body className='app'> 
       <Header />
       <Sidebar />
-      <main>
-        <content>
+      <main className='container-fluid'>
           <Outlet />
-        </content>
       </main>
       <Footer />
       
-    </>
+    </body>
   )
 }

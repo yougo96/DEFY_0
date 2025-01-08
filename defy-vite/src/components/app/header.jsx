@@ -5,8 +5,7 @@ export default function Header () {
 
     return (
         <header>
-            <NavLink to="/app"><h1>DEFY</h1></NavLink>
-            {/* <MantineLogo size={30} /> */}
+            <NavLink to="/app"><h1 className="defy">DEFY</h1></NavLink>
             <NavLink to="/app/users/3"><img className="avatar" /></NavLink>
         </header>
     )
