@@ -13,6 +13,7 @@ import User from './pages/app/user.jsx';
 import Static from './pages/static/static.jsx'
 import Landing from './pages/static/landing.jsx';
 import Login from './pages/static/login.jsx';
+import Register from './pages/static/register.jsx';
 
 import NotFound from './pages/404.jsx';
 
@@ -26,6 +27,7 @@ ReactDOM.createRoot(root).render(
       <Route path="/" element={<Static />}>
         <Route index element={<Landing />} />
         <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

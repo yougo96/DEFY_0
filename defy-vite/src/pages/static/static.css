@@ -1,16 +1,21 @@
-body.static {
+.body.static {
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
 > * {
     padding: 0.2rem 0.4rem;
     outline: solid 1px rgba(128, 128, 128, 0.4);
 }
 
+
 header {
-    background-color: darkblue;
 }
 
 main {
-    min-height: 50vh;
+    min-height: 66vh;
+    width: 1240px;
+    max-width: calc(100vw - 2rem);
 }
 
 }

@@ -8,9 +8,11 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
 import db from '@adonisjs/lucid/services/db'
 
 const UsersController = () => import('#controllers/users_controller')
+const SessionController = () => import('#controllers/session_controller')
 
 router.get('/', async () => {
   return {
@@ -18,14 +20,18 @@ router.get('/', async () => {
   }
 })
 
+router.post('/login', [SessionController, 'store'])
+router.get('/session', [SessionController, 'index'])
+// .use(middleware.auth({ guards: ['api'] }))
+
 router.get('/users', [UsersController, 'index'])
 router.get('/users/:id', [UsersController, 'show'])
 
+router.post('/users', [UsersController, 'create'])
+
 router.get('/tracks', async () => {
-
-  let result = await db.from('tracks').exec()
-
-  return {
-    result,
-  }
+  return await db.from('tracks').exec()
+})
+router.get('/bikes', async () => {
+  return await db.from('bikes').exec()
 })

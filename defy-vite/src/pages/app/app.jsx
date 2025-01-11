@@ -11,7 +11,7 @@ import './app.css'
 
 export default function App() {
   return (
-    <body className='app'> 
+    <div className='body app'> 
       <Header />
       <Sidebar />
       <main className='container-fluid'>
@@ -19,6 +19,6 @@ export default function App() {
       </main>
       <Footer />
       
-    </body>
+    </div>
   )
 }

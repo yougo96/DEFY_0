@@ -6,13 +6,17 @@ import './static.css'
 export default function Static () {
 
     return (
-        <body className='static'>
-            <header><h1>DEFY</h1></header>
+        <div className='body static'>
+            <header>
+                <NavLink to="/"><h1 className='defy'>DEFY</h1></NavLink>
+            </header>
             <main className='container-fluid'>
 
                 <Outlet />
             </main>
-            <footer>Footer</footer>
-        </body>
+            <footer>
+                <span>© 2024 Pradier Hugo. All Rights Reserved.</span>
+            </footer>
+        </div>
     )
 }

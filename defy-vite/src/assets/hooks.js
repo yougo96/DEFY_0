@@ -50,10 +50,21 @@ export function useFetch() {
 }
 
 export function useConnexion() {
-    const email = sessionStorage.getItem("email")
-    const password = sessionStorage.getItem("password")
+    const sessionId = localStorage.getItem("id")
+    const sessionPseudo = localStorage.getItem("pseudo")
+    const sessionAvatar = localStorage.getItem("avatar")
+    const sessionEmail = localStorage.getItem("email")
+    const sessionType = localStorage.getItem("type")
+    const sessionToken = localStorage.getItem("token")
 
-    const [connected, setConnected] = useState(email && password)
-
-    return {connected}
+    const [connected, setConnected] = useState(sessionId && sessionToken)
+    const [curentUser, setCurentUser] = useState({
+        id: sessionId,
+        pseudo: sessionPseudo,
+        avatar: sessionAvatar,
+        email: sessionEmail,
+        type: sessionType,
+        token: sessionToken
+    })
+    return {connected, curentUser}
 }

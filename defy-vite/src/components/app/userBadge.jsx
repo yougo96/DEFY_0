@@ -17,11 +17,9 @@ export default function UserBadge ({id}) {
         isLoading && <div>Loading</div> ||
         error && <div>{error}</div> ||                    
         apiData &&
-        <>
-            <div style={{display: "flex", alignItems: "center"}}>
-                <img className="avatar" src={apiData.avatar} title={apiData.pseudo} alt="avatar"/>
-                <h5>{apiData.pseudo}</h5>
-            </div >
-        </>
+        <div style={{display: "flex", alignItems: "center", gap: "0.4rem", margin: "0.4rem"}}>
+            <img className="avatar" src={apiData.avatar} title={apiData.pseudo} alt="avatar"/>
+            <h5>{apiData.pseudo}</h5>
+        </div >
     )
 }
