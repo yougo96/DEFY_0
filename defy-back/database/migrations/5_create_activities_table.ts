@@ -12,9 +12,9 @@ export default class extends BaseSchema {
       table.json('gps_json').nullable()
       table.dateTime('date', { useTz: true, precision: 6 }).nullable()
 
-      table.foreign('user_id').references('users.id')
-      table.foreign('bike_id').references('bikes.id')
-      table.foreign('track_id').references('tracks.id')
+      table.integer('user_id').references('users.id')
+      table.integer('bike_id').references('bikes.id')
+      table.integer('track_id').references('tracks.id')
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

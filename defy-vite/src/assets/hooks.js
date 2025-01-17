@@ -39,9 +39,9 @@ export function useFetch() {
                 setError(error.message)
             }            
         })
-        .finally(
+        .finally(() => {
             setError(null)
-        )
+        })
     }
 
     // console.log(apiData, isLoading, error)

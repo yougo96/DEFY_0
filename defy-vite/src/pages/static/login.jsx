@@ -3,13 +3,14 @@ import { useState } from "react"
 import { useFetch } from "../../assets/hooks"
 
 export default function Login () {
-    const { makeRequest, apiData, isLoading, error } = useFetch()
+    const { makeRequest, apiData = "toto", isLoading, error } = useFetch()
     const [formValid, setFormValid] = useState(true)
 
     async function handleForm (e) {
         e.preventDefault();
+        
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
+        const data = Object.fromEntries(formData);        
 
         await makeRequest('login', {
             method: "POST",
@@ -17,24 +18,22 @@ export default function Login () {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then((res) => {
-            console.log('res', res)
-            if (apiData) {
-                console.log('apidata', apiData)
-                localStorage.setItem("id", apiData.id);
-                localStorage.setItem("pseudo", apiData.pseudo);
-                localStorage.setItem("avatar", apiData.avatar);
-                localStorage.setItem("email", apiData.email);                
-                localStorage.setItem("type", apiData.type);
-                localStorage.setItem("token", apiData.value);
-                window.location.href = "/app"
-            } else {
-                setFormValid(false)
-            }
-        }).catch((err) => {
-            console.log('err', err)
-            setFormValid(false)
         })
+        
+        console.log('apidata', apiData)
+
+        if (!error && apiData) {
+            localStorage.setItem("id", apiData.id);
+            localStorage.setItem("pseudo", apiData.pseudo);
+            localStorage.setItem("avatar", apiData.avatar);
+            localStorage.setItem("email", apiData.email);                
+            localStorage.setItem("type", apiData.type);
+            localStorage.setItem("token", apiData.value);
+            window.location.href = "/app"
+        } else {
+            setFormValid(false)
+        }               
+
     }
 
     return (

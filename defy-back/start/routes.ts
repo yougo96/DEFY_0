@@ -13,10 +13,13 @@ import db from '@adonisjs/lucid/services/db'
 
 const UsersController = () => import('#controllers/users_controller')
 const SessionController = () => import('#controllers/session_controller')
+const TracksController = () => import('#controllers/tracks_controller')
+const BikesController = () => import('#controllers/bikes_controller')
+const ActivitiesController = () => import('#controllers/activities_controller')
 
 router.get('/', async () => {
   return {
-    hello : 'world',
+    hello: 'welcome on DEFY api',
   }
 })
 
@@ -29,9 +32,11 @@ router.get('/users/:id', [UsersController, 'show'])
 
 router.post('/users', [UsersController, 'create'])
 
-router.get('/tracks', async () => {
-  return await db.from('tracks').exec()
-})
-router.get('/bikes', async () => {
-  return await db.from('bikes').exec()
-})
+router.get('/tracks', [TracksController, 'index'])
+router.get('/tracks/:id', [TracksController, 'show'])
+
+router.get('/bikes', [BikesController, 'index'])
+router.get('/bikes/:id', [BikesController, 'show'])
+
+router.get('/activities', [ActivitiesController, 'index'])
+router.get('/activities/:id', [ActivitiesController, 'show'])

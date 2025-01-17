@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 // Libs
 // Files
-import { useFetch } from "../../assets/hooks"
+import { useFetch } from "../../../assets/hooks"
 
 export default function UserBadge ({id}) {
 

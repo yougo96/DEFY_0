@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useParams } from 'react-router';
 
 import { useFetch, useConnexion } from "../../assets/hooks"
-import UserBadge from '../../components/app/userBadge';
+import UserBadge from '../../components/app/user/userBadge';
 
 export default function User () {
     const { makeRequest: userMakeRequest, apiData: userApiData, isLoading: userIsLoading, error: userError } = useFetch()

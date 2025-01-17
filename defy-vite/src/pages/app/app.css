@@ -10,7 +10,7 @@
     --accent-light: var(--hue), 82%, 85%;
     --accent-dark: var(--hue), 82%, 22%;
 
-    --border-radius: 1px;
+    --border-radius: 6px;
     --border-width : 1px;
     --grid-gap : 1px;
 
@@ -31,6 +31,10 @@
 > * {
     padding: 0.2rem 0.4rem;
     outline: solid 1px rgba(128, 128, 128, 0.2);
+}
+
+.grid {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 }
 
 h1,h2,h3,h4,h5,h6 {

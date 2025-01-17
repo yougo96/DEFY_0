@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router'
 // Libs
 // import { MantineLogo } from '@mantinex/mantine-logo';
 // Components
-import Header from '../../components/app/header'
-import Sidebar from '../../components/app/sidebar'
-import Footer from '../../components/app/footer'
+import Header from '../../components/app/layout/header'
+import Sidebar from '../../components/app/layout/sidebar'
+import Footer from '../../components/app/layout/footer'
 // Files
 import './app.css'
 
