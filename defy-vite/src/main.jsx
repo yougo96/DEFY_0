@@ -16,6 +16,7 @@ import Login from './pages/static/login.jsx';
 import Register from './pages/static/register.jsx';
 import Track from './pages/app/track.jsx';
 import Bike from './pages/app/bike.jsx';
+import PostActivitie from './pages/app/postActivitie.jsx';
 
 import NotFound from './pages/404.jsx';
 
@@ -34,10 +35,16 @@ ReactDOM.createRoot(root).render(
       </Route>
 
       <Route path='app' element={<App />}>
+        
         <Route index element={<Home />} />
+        <Route path="activities/add" element={<PostActivitie />} />
+        
         <Route path="users/:id" element={<User />} />
+
         <Route path="tracks" element={<Track />} />
+
         <Route path="bikes" element={<Bike />} />
+
         <Route path="*" element={<NotFound />} />
       </Route>
 

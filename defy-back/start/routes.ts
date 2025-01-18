@@ -24,7 +24,7 @@ router.get('/', async () => {
 })
 
 router.post('/login', [SessionController, 'store'])
-router.get('/session', [SessionController, 'index'])
+router.get('/session', [SessionController, 'index']).use(middleware.auth({ guards: ['api'] }))
 // .use(middleware.auth({ guards: ['api'] }))
 
 router.get('/users', [UsersController, 'index'])
@@ -40,3 +40,5 @@ router.get('/bikes/:id', [BikesController, 'show'])
 
 router.get('/activities', [ActivitiesController, 'index'])
 router.get('/activities/:id', [ActivitiesController, 'show'])
+router.post('/activities', [ActivitiesController, 'store'])
+// .use(middleware.auth({ guards: ['api'] }))

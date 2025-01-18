@@ -22,7 +22,8 @@ export default class SessionController {
   async store({ request, auth, response }: HttpContext) {
     const { email, password } = request.only(['email', 'password'])
     const user = await User.verifyCredentials(email, password)
-    const token = await User.accessTokens.create(user)
+    const token = await User.accessTokens.create(user, ['*'])
+
     if (user.avatar == null) user.avatar = ''
 
     return response.status(200).send({

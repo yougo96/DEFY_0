@@ -16,7 +16,7 @@ export default function TrackCard ({id}) {
         isLoading && <div aria-busy="true">Loading</div> ||
         error && <div>{error}</div> ||                    
         apiData &&
-        <article style={{}}>
+        <article className="card-link" tabIndex="0" style={{}}>
             <h5>{apiData.name}</h5>
         </article >
     )

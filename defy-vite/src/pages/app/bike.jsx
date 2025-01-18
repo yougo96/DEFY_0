@@ -20,7 +20,6 @@ export default function Track () {
             apiData.map((data, index) => (
                 <BikeCard key={index} id={data.id} />
             ))}
-            <article>+ add</article>
         </div>
         </>
     )

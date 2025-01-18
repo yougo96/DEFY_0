@@ -5,16 +5,16 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments('id').notNullable()
       table.string('name').notNullable()
       table.string('description').nullable()
       table.json('image_json').nullable()
       table.json('gps_json').nullable()
       table.dateTime('date', { useTz: true, precision: 6 }).nullable()
 
-      table.integer('user_id').references('users.id')
-      table.integer('bike_id').references('bikes.id')
-      table.integer('track_id').references('tracks.id')
+      table.integer('user_id').references('users.id').notNullable()
+      table.integer('bike_id').references('bikes.id').notNullable()
+      table.integer('track_id').references('tracks.id').notNullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')
