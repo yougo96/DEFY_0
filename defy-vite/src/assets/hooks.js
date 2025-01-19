@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 let apiUrl = new URL(location.origin)
 apiUrl.port = '3333';
 apiUrl += ''
 // const apiUrl = "http://localhost:3000/"
 // const apiUrl = "https://kasa-eosin-ten.vercel.app:3000/"
 
-export function useFetch() {
+export function useFetch(urlArg, optionsArg = {}) {
     
     const [apiData, setApiData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -44,6 +44,12 @@ export function useFetch() {
         })
     }
 
+    if (urlArg) {
+        useEffect(() => {
+            makeRequest(urlArg, optionsArg)
+        }, [])
+    }
+
     // console.log(apiData, isLoading, error)
     return { makeRequest, apiData, isLoading, error }
 
@@ -51,7 +57,7 @@ export function useFetch() {
 
 export function useConnexion() {
     const sessionId = localStorage.getItem("id")
-    const sessionPseudo = localStorage.getItem("pseudo")
+    const sessionName = localStorage.getItem("name")
     const sessionAvatar = localStorage.getItem("avatar")
     const sessionEmail = localStorage.getItem("email")
     const sessionType = localStorage.getItem("type")
@@ -60,7 +66,7 @@ export function useConnexion() {
     const [connected, setConnected] = useState(sessionId && sessionToken)
     const [curentUser, setCurentUser] = useState({
         id: sessionId,
-        pseudo: sessionPseudo,
+        name: sessionName,
         avatar: sessionAvatar,
         email: sessionEmail,
         type: sessionType,

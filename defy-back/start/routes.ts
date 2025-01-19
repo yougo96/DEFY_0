@@ -20,6 +20,10 @@ const ActivitiesController = () => import('#controllers/activities_controller')
 router.get('/', async () => {
   return {
     hello: 'welcome on DEFY api',
+    routes: [
+      { url: 'GET /users', docs: 'Get all users id and name' },
+      { url: 'GET /users/:id', docs: 'Get user by id' },
+    ]
   }
 })
 
@@ -40,5 +44,4 @@ router.get('/bikes/:id', [BikesController, 'show'])
 
 router.get('/activities', [ActivitiesController, 'index'])
 router.get('/activities/:id', [ActivitiesController, 'show'])
-router.post('/activities', [ActivitiesController, 'store'])
-// .use(middleware.auth({ guards: ['api'] }))
+router.post('/activities', [ActivitiesController, 'store']).use(middleware.auth({ guards: ['api'] }))

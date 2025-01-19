@@ -5,6 +5,8 @@ export default function PostActivitie () {
     const { makeRequest, apiData, isLoading, error } = useFetch()
     const { connected, curentUser } = useConnexion()
 
+    if (!connected) {window.location.href = "/login"}
+
     async function handleForm (e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -15,9 +17,15 @@ export default function PostActivitie () {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${curentUser.token}`,
             },
             body: JSON.stringify(data)
+        }).then(() => {
+            window.location.href = "/app/activities"
+        }).catch((err) => {
+            console.log(err)
         })
+        
     }
 
     return (
@@ -25,14 +33,13 @@ export default function PostActivitie () {
             <h1>Add activitie</h1>
             <hr />
             <form onSubmit={(e) => handleForm(e)}>
-                <input name="name" placeholder="name" type="text" />
-                <hr />
-                <input name="trackId" placeholder="track" type="number" />
-                <input name="bikeId" placeholder="bike" type="number" />
-                <input name="date" type="date" />
+                <input name="name" placeholder="name" type="text" required />
+                <input name="trackId" placeholder="track" type="number" required />
+                <input name="bikeId" placeholder="bike" type="number" required />
+                <input name="date" type="date" required />
                 <hr />
                 <textarea name="description" placeholder="description" type="text" rows="8">
-                    - Engine setup:
+                    - Engine:
                     - Suspensions setup:
                     - Electronics setup:
                     - Final drive ratio:

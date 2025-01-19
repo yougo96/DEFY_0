@@ -22,7 +22,7 @@ export default function Register () {
         <>
             <h1>Register</h1>
             <form onSubmit={(e) => handleForm(e)}>
-                <input name="pseudo" placeholder="pseudo" type="text" />
+                <input name="name" placeholder="name" type="text" />
                 <input name="avatar" placeholder="avatar" type="text" />
                 <input name="email" placeholder="email" type="email" />
                 <input name="password" placeholder="password" type="password" />

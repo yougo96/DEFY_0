@@ -18,9 +18,9 @@ export default class UsersController {
   }
 
   async create({ request }: HttpContext) {
-    const { pseudo, avatar, email, password } = request.only(['pseudo', 'avatar', 'email', 'password'])
+    const { name, avatar, email, password } = request.only(['name', 'avatar', 'email', 'password'])
     return await User.create({
-      pseudo: pseudo,
+      name: name,
       avatar: avatar,
       email: email,
       password: password,

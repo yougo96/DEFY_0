@@ -19,7 +19,7 @@ export default function Header () {
             <nav>
                 {connected && curentUser ?
                     <> <NavLink to={'/app/users/'+curentUser.id}>
-                        {curentUser.avatar ? <img className="avatar" src={curentUser.avatar} /> : <span className="avatar">{curentUser.pseudo.charAt(0)}</span>}
+                        {curentUser.avatar ? <img className="avatar" src={curentUser.avatar} /> : <span className="avatar">{curentUser.name.charAt(0)}</span>}
                     </NavLink>
                     <button onClick={logout}>Logout</button> </>
                     : <NavLink role="button" to="/login">Login</NavLink>

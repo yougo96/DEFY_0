@@ -28,7 +28,7 @@ export default class SessionController {
 
     return response.status(200).send({
       id: user.id,
-      pseudo: user.pseudo,
+      name: user.name,
       avatar: user.avatar,
       email: user.email,
       type: 'bearer',

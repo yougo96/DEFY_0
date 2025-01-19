@@ -3,14 +3,14 @@ import { useState } from "react"
 import { useFetch } from "../../assets/hooks"
 
 export default function Login () {
-    const { makeRequest, apiData = "toto", isLoading, error } = useFetch()
+    const { makeRequest, apiData, isLoading, error } = useFetch()
     const [formValid, setFormValid] = useState(true)
 
     async function handleForm (e) {
         e.preventDefault();
         
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);        
+        const data = Object.fromEntries(formData);
 
         await makeRequest('login', {
             method: "POST",
@@ -18,13 +18,13 @@ export default function Login () {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
+        }).then((res) => {
+            console.log('success', res)
         })
-        
-        console.log('apidata', apiData)
 
         if (!error && apiData) {
             localStorage.setItem("id", apiData.id);
-            localStorage.setItem("pseudo", apiData.pseudo);
+            localStorage.setItem("name", apiData.name);
             localStorage.setItem("avatar", apiData.avatar);
             localStorage.setItem("email", apiData.email);                
             localStorage.setItem("type", apiData.type);
@@ -32,7 +32,35 @@ export default function Login () {
             window.location.href = "/app"
         } else {
             setFormValid(false)
-        }               
+        }
+    }
+
+    async function handleFormLegacy (e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData);
+
+        const res = await fetch('http://localhost:3333/login', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(resj => {
+            console.log('resj', resj)
+            localStorage.setItem("id", resj.id);
+            localStorage.setItem("name", resj.name);
+            localStorage.setItem("avatar", resj.avatar);
+            localStorage.setItem("email", resj.email);                
+            localStorage.setItem("type", resj.type);
+            localStorage.setItem("token", resj.value);
+            window.location.href = "/app"
+        }).catch(err => {
+            setFormValid(false)
+        })
+
+        console.log('res', res)
 
     }
 

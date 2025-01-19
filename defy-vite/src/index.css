@@ -1,7 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 :root {
+  --hue: 210;
 
+  --a: hsl(var(--hue), 81%, 57%);
+  --a-l: hsl(var(--hue), 82%, 85%);
+  --a-d: hsl(var(--hue), 82%, 22%);
+
+  --accent: var(--hue), 81%, 57%;
+  --accent-light: var(--hue), 82%, 85%;
+  --accent-dark: var(--hue), 82%, 22%;
+
+  --border-radius: 6px;
+  --border-width : 1px;
+  --grid-gap : 1px;
+
+  --bp-mobile : 768px;
 }
 /* ========== Scroll ===================================================== */
 *::-webkit-scrollbar {
@@ -34,8 +48,8 @@ a.active > * {
 }
 
 img.avatar {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: var(--border-radius);
   background-color: #f0f0f0;
 }

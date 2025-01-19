@@ -12,12 +12,12 @@ import './app.css'
 export default function App() {
   return (
     <div className='body app'> 
-      <Header />
+      {/* <Header /> */}
       <Sidebar />
       <main className='container-fluid'>
-          <Outlet />
+        <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
       
     </div>
   )

@@ -1,24 +1,21 @@
 import { useEffect } from "react"
 
 import { useFetch } from "../../assets/hooks"
-import BikeCard from "../../components/app/bike/bikeCard";
+import TrackCard from "../../components/app/track/trackCard";
 
-export default function Track () {
-    const { makeRequest, apiData, isLoading, error } = useFetch()
-    
-    useEffect(() => {
-        makeRequest(`bikes`)
-    }, [])
+export default function Tracks () {
+    const { makeRequest, apiData, isLoading, error } = useFetch(`tracks`)
     
     return (
         <>
-        <h1>Bikes</h1>
+        <h1>Tracks</h1>
+        <hr />
         <div className="grid">
             { isLoading && <div aria-busy="true">Loading</div> ||
             error && <div>{error}</div> ||                    
             apiData &&
             apiData.map((data, index) => (
-                <BikeCard key={index} id={data.id} />
+                <TrackCard key={index} id={data.id} />
             ))}
         </div>
         </>

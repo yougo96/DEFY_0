@@ -16,16 +16,6 @@ export default function Home () {
         <>
             <h1>HOME</h1>
             <hr />
-            <h2>activities</h2>
-            <div className="grid">
-                { isLoading && <div aria-busy="true">Loading</div> ||
-                error && <div>{error}</div> ||                    
-                apiData &&
-                apiData.map((data, index) => (
-                    <ActivitieCard key={index} id={data.id} />
-                ))}
-                <article className="card-link" tabIndex="0" onClick={() => {navigate("activities/add")}} >+ add</article>
-            </div>
         </>
     )
 }
