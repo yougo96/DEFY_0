@@ -24,7 +24,7 @@ export default function ActivitieCard ({id}) {
                 <li>{apiData.date}</li>
                 <li>{apiData.description}</li>
                 <li><Badge endpoint={`tracks/${apiData.trackId}`} /> </li>
-                <li><Badge endpoint={`bikes/${apiData.trackId}`} /></li>
+                <li><Badge endpoint={`bikes/${apiData.bikeId}`} /></li>
             </ul>
             
         </article >

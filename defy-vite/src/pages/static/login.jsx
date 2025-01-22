@@ -19,48 +19,17 @@ export default function Login () {
             },
             body: JSON.stringify(data)
         }).then((res) => {
-            console.log('success', res)
-        })
+            if (res) {
+                localStorage.setItem("id", res.id);
+                localStorage.setItem("name", res.name);
+                localStorage.setItem("avatar", res.avatar);
+                localStorage.setItem("email", res.email);                
+                localStorage.setItem("type", res.type);
+                localStorage.setItem("token", res.value);
+                window.location.href = "/app"
+            } else { setFormValid(false) }
+        }).catch((err) => { setFormValid(false) })
 
-        if (!error && apiData) {
-            localStorage.setItem("id", apiData.id);
-            localStorage.setItem("name", apiData.name);
-            localStorage.setItem("avatar", apiData.avatar);
-            localStorage.setItem("email", apiData.email);                
-            localStorage.setItem("type", apiData.type);
-            localStorage.setItem("token", apiData.value);
-            window.location.href = "/app"
-        } else {
-            setFormValid(false)
-        }
-    }
-
-    async function handleFormLegacy (e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData);
-
-        const res = await fetch('http://localhost:3333/login', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json()).then(resj => {
-            console.log('resj', resj)
-            localStorage.setItem("id", resj.id);
-            localStorage.setItem("name", resj.name);
-            localStorage.setItem("avatar", resj.avatar);
-            localStorage.setItem("email", resj.email);                
-            localStorage.setItem("type", resj.type);
-            localStorage.setItem("token", resj.value);
-            window.location.href = "/app"
-        }).catch(err => {
-            setFormValid(false)
-        })
-
-        console.log('res', res)
 
     }
 

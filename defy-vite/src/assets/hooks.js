@@ -14,6 +14,7 @@ export function useFetch(urlArg, optionsArg = {}) {
     const makeRequest = async (url, options = {}) => {
 
         console.log("requesting "+apiUrl+url)
+        let PromiseData
 
         await fetch(apiUrl+url.toString(), 
         {
@@ -30,6 +31,7 @@ export function useFetch(urlArg, optionsArg = {}) {
         .then((data) => {
             setApiData(data)
             setIsLoading(false)
+            PromiseData = data
         })
         .catch((error) => {
             setIsLoading(false)
@@ -41,7 +43,10 @@ export function useFetch(urlArg, optionsArg = {}) {
         })
         .finally(() => {
             setError(null)
+            
         })
+
+        return Promise.resolve(PromiseData);
     }
 
     if (urlArg) {

@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useNavigate, useParams } from "react-router";
 
 import { useFetch } from "../../assets/hooks"
-import ActivitieCard from "../../components/app/activitie/activitieCard";
+import Badge from '/src/components/app/utils/badge.jsx';
 
 export default function ActivitiesId () {
     let { id } = useParams();
@@ -15,7 +15,14 @@ export default function ActivitiesId () {
             {isLoading && <div aria-busy="true">Loading</div> ||
             error && <div>{error}</div> ||                    
             apiData &&
-            <ActivitieCard id={id} />}
+            <>
+            <h3>{apiData.name}</h3>
+            <ul>
+                <li>{apiData.date}</li>
+                <li>{apiData.description}</li>
+                <li><Badge endpoint={`tracks/${apiData.trackId}`} /> </li>
+                <li><Badge endpoint={`bikes/${apiData.bikeId}`} /></li>
+            </ul></>}
         </>
     )
 }
