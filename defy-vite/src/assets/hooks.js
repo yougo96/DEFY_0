@@ -11,53 +11,39 @@ export function useFetch(urlArg, optionsArg = {}) {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const makeRequest = async (url, options = {}) => {
+    const makeRequest = (url, options = {}) => {
+        console.log('makeRequest',apiUrl+url.toString())
+        setIsLoading(true);
+        setError(null);
 
-        console.log("requesting "+apiUrl+url)
-        let PromiseData
-
-        await fetch(apiUrl+url.toString(), 
+        return fetch(apiUrl+url.toString(), 
         {
             ...options,
             headers: {
                 ...options.headers
         }
         }).then((response) => {
-            if (!response.ok) {
-                throw Error(response.status)
-            }
+            if (!response.ok) { throw Error(response.status) }
             return response.json()
         })
         .then((data) => {
             setApiData(data)
             setIsLoading(false)
-            PromiseData = data
+            return data
         })
         .catch((error) => {
             setIsLoading(false)
-            if (error.message === "Failed to fetch") {
-                setError("403")
-            } else {
-                setError(error.message)
-            }            
+            setError(error.message)
+            throw error.message
         })
-        .finally(() => {
-            setError(null)
-            
-        })
-
-        return Promise.resolve(PromiseData);
     }
 
     if (urlArg) {
         useEffect(() => {
             makeRequest(urlArg, optionsArg)
-        }, [])
+        }, [urlArg])
     }
-
-    // console.log(apiData, isLoading, error)
     return { makeRequest, apiData, isLoading, error }
-
 }
 
 export function useConnexion() {

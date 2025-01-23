@@ -21,6 +21,7 @@ export default function Sidebar () {
                 <li><NavLink to="/app/analytics"><h3>Analytics</h3></NavLink></li>
                 <li><NavLink to="/app/tracks"><h3>Tracks</h3></NavLink></li>
                 <li><NavLink to="/app/bikes"><h3>Bikes</h3></NavLink></li>
+                <li><NavLink to="/app/users"><h3>Users</h3></NavLink></li>
                 <hr />
                 <li><NavLink to="/"><h3>landing</h3></NavLink></li>
             </ul>

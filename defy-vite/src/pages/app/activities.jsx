@@ -15,12 +15,14 @@ export default function Activities () {
             <h2>activities</h2>
             <div className="grid">
                 <article className="card-link" tabIndex="0" style={{outline: "solid 1px var(--pico-ins-color)"}} onClick={() => {navigate("add")}} >+ add</article>
-                { isLoading && <div aria-busy="true">Loading</div> ||
-                error && <div>{error}</div> ||                    
-                apiData &&
-                apiData.map((data, index) => (
-                    <ActivitieCard key={index} id={data.id} />
-                ))}
+                { 
+                    isLoading && <article aria-busy="true">Loading</article> ||
+                    error && <article>{error}</article> ||                    
+                    apiData &&
+                    apiData.map((data, index) => (
+                        <ActivitieCard key={index} id={data.id} />
+                    ))
+                }
             </div>
         </>
     )

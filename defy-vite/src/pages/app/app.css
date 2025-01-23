@@ -46,7 +46,7 @@ aside.sidebar {
         }
         > summary {
             padding-left: 4rem;
-            img { position: absolute;  left: 0.2rem; top: 0.2rem; height: calc(100% - 0.4rem); width: calc(3rem - 0.4rem); }
+            img, span { position: absolute;  left: 0.2rem; top: 0.2rem; height: calc(100% - 0.4rem); width: calc(3rem - 0.4rem); }
         }
         > ul {
             list-style: none;

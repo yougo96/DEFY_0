@@ -4,17 +4,17 @@ import { useEffect } from "react"
 // Files
 import { useFetch } from "../../../assets/hooks"
 
-export default function badge ({endpoint}) {
+export default function badge ({endpoint, hue}) {
     const { makeRequest, apiData, isLoading, error } = useFetch(endpoint)
 
     return (
-
-        isLoading && <div>Loading</div> |
-        error && <div>{error}</div> ||                    
-        apiData &&
-        <div className="badge">
-            { apiData.avatar && <img src={apiData.avatar} title={apiData.name} alt="avatar"/>}
+        <div className="badge" style={{'--badge-hue': hue}}>
+        {isLoading ? <div>Loading</div> : error ? <div>{error}</div> : apiData && (
+          <>
+            {apiData.avatar && <img src={apiData.avatar} title={apiData.name} alt="avatar" />}
             <b>{apiData.name}</b>
-        </div >
+          </>
+        )}
+      </div>
     )
 }
